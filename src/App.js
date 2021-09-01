@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Geolocation from "./geolocation";
 const api = {
     key: "1dac6e4f0758eccd4f9e3396b7adea43",
     base: "https://api.openweathermap.org/data/2.5/"
@@ -29,8 +30,10 @@ function App() {
         let month = months[d.getMonth()];
         let year = d.getFullYear();
 
-        return `${day} ${date} ${month} ${year}`
+        return `${day}, ${month} ${date}, ${year}`
     }
+
+   
 
     return (
         <div className={
@@ -50,7 +53,6 @@ function App() {
                 )
 
                 : 'app'
-
         }>
             <main>
                 <div className="search-box">
@@ -87,7 +89,7 @@ function App() {
                         )
 
                     )}
-
+                <Geolocation />
             </main>
         </div>
     );
