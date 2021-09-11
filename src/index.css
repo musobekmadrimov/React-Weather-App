@@ -1,52 +1,56 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body{
-  font-family: 'montserrat', sans-serif;
+body {
+  font-family: "montserrat", sans-serif;
 }
 
-.app{
-  background-image: url('./assets/cold.jpg');
+.app {
+  background-image: url("./assets/cold.jpg");
   background-size: cover;
   background-position: center;
-  transition: .4s ease-out;
+  transition: 0.4s ease-out;
 }
 
-.app.warm{
-  background-image: url('./assets/hot.jpg');
+.app.warm {
+  background-image: url("./assets/hot.jpg");
 }
 
-.app.rainy{
-  background-image: url('./assets/Rain.jpg');
+.app.rainy {
+  background-image: url("./assets/Rain.jpg");
 }
 
-.app.cloudy{
-  background-image: url('./assets/cloudy.jpg');
+.app.cloudy {
+  background-image: url("./assets/cloudy.jpg");
 }
 
-.app.snow{
-  background-image: url('./assets/snow.jpg');
+.app.snow {
+  background-image: url("./assets/snow.jpg");
 }
 
-.app.windy{
-  background-image: url('./assets/windy.jpg');
+.app.windy {
+  background-image: url("./assets/windy.jpg");
 }
 
-main{
+main {
   min-height: 100vh;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.75));
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.75)
+  );
   padding: 25px;
 }
 
-.search-box{
+.search-box {
   width: 100%;
   margin: 0 0 75px;
 }
 
-.search-box .search-bar{
+.search-box .search-bar {
   display: block;
   width: 100%;
   padding: 15px;
@@ -54,58 +58,252 @@ main{
   background: none;
   border: none;
   outline: none;
-  background-color: rgba(255, 255, 255, .5);
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 0 0 16px 16px;
   margin-top: -25px;
-  box-shadow: 0 5px rgba(0, 0, 0, .2);
+  box-shadow: 0 5px rgba(0, 0, 0, 0.2);
   color: #313131;
   font-size: 20px;
-  transition: .4s ease;
+  transition: 0.4s ease;
 }
 
-.search-box .search-bar:focus{
-  background-color: rgba(255, 255, 255, .75);
+.search-box .search-bar:focus {
+  background-color: rgba(255, 255, 255, 0.75);
 }
 
-.location-box .location{
+.location-box .location {
   color: #fff;
   font-size: 32px;
   font-weight: 500;
   text-align: center;
-  text-shadow: 2px 2px rgba(50, 50, 70, .5);
+  text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
 }
 
-.location-box .date{
+.location-box .date {
   color: #fff;
   font-size: 20px;
   font-weight: 300;
   font-style: italic;
   text-align: center;
-  text-shadow: 2px 2px rgba(50, 50, 70, .5);
+  text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
 }
 
-.weather-box{
+.weather-box {
+  display: flex;
+  flex-direction: column;
   text-align: center;
-}
-
-.weather-box .temp{
-  position: relative;
-  display: inline-block;
+  width: 300px;
   margin: 30px auto;
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   padding: 15px 25px;
   color: #fff;
-  font-size: 102px;
-  font-weight: 900;
-  text-shadow: 3px 6px rgba(50, 50, 70, .5);
-  text-align: center;
-  box-shadow: 3px 6px rgba(0, 0, 0, .2);
+  box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-.weather-box .weather{
+.weather-box .temp {
+  font-size: 102px;
+  font-weight: 900;
+  text-shadow: 3px 6px rgba(50, 50, 70, 0.5);
+}
+
+.weather-box .weather {
+  display: flex;
+  justify-content: space-between;
   color: #fff;
-  font-size: 48px;
+}
+
+.weather-box .weather .key {
+  text-align: left;
+  text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+}
+
+.weather-box .weather .key h3,
+.weather-box .weather .value p {
+  font-size: 16px;
+}
+
+.weather-box .weather .value {
+  text-align: right;
+  text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+}
+
+.whoDeveloped {
+  width: 50%;
+  margin: 0 auto;
+  padding: 25px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.whoDeveloped a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 24px;
+}
+
+.whoDeveloped p {
   font-weight: 700;
-  text-shadow: 3px 3px rgba(50, 50, 70, .5);
+  text-align: center;
+  font-size: 40px;
+  font-family: Hack, sans-serif;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #000, #fff, #000);
+  letter-spacing: 5px;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-repeat: no-repeat;
+  background-size: 80%;
+  animation: shine 5s linear infinite;
+  position: relative;
+}
+
+@keyframes shine {
+  0% {
+    background-position-x: -500%;
+  }
+  100% {
+    background-position-x: 500%;
+  }
+}
+
+/* Responsive Settings */
+
+@media screen and (max-width: 450px) {
+  .weather-box {
+    width: 95%;
+  }
+
+  .weather-box .temp {
+    font-size: 70px;
+  }
+
+  .weather-box .weather {
+    justify-content: space-around;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .whoDeveloped {
+    width: 90%;
+    border-radius: 10px;
+  }
+
+  .whoDeveloped p {
+    width: 100%;
+    font-size: 30px;
+  }
+
+  .whoDeveloped p a {
+    font-size: 6px;
+    text-transform: lowercase;
+  }
+}
+
+@media screen and (min-width: 451px) and (max-width: 568px) {
+  .weather-box {
+    width: 95%;
+  }
+
+  .weather-box .temp {
+    font-size: 70px;
+  }
+
+  .weather-box .weather {
+    justify-content: space-around;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .whoDeveloped {
+    width: 90%;
+    border-radius: 10px;
+  }
+
+  .whoDeveloped p {
+    width: 100%;
+    font-size: 30px;
+  }
+
+  .whoDeveloped p a {
+    font-size: 13px;
+    text-transform: lowercase;
+  }
+}
+
+@media screen and (min-width: 569px) and (max-width: 869px) {
+  .weather-box {
+    width: 95%;
+  }
+
+  .weather-box .temp {
+    font-size: 70px;
+  }
+
+  .weather-box .weather {
+    justify-content: space-around;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .whoDeveloped {
+    width: 90%;
+    border-radius: 10px;
+  }
+
+  .whoDeveloped p {
+    width: 100%;
+    font-size: 30px;
+  }
+
+  .whoDeveloped p a {
+    font-size: 16px;
+    text-transform: lowercase;
+  }
+}
+
+@media screen and (min-width: 870px) and (max-width: 1024px) {
+  .weather-box {
+    width: 400px;
+    margin: 30px auto;
+  }
+
+  .weather-box .weather {
+    display: flex;
+    justify-content: space-around;
+    color: #fff;
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  .whoDeveloped {
+    width: 60%;
+  }
+
+  .whoDeveloped p a {
+    font-size: 22px;
+    text-transform: lowercase;
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1400px) {
+  .whoDeveloped {
+    width: 60%;
+  }
+
+  .whoDeveloped p a {
+    font-size: 22px;
+    text-transform: lowercase;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .whoDeveloped p a {
+    font-size: 26px;
+    text-transform: lowercase;
+  }
 }

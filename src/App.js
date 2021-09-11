@@ -1,13 +1,24 @@
 import React, { useState } from "react";
 import Geolocation from "./geolocation";
+import WhoDeveloped from "./WhoDeveloped";
 const api = {
     key: "1dac6e4f0758eccd4f9e3396b7adea43",
     base: "https://api.openweathermap.org/data/2.5/"
 }
 
+let sunRise;
+let sunSet;
+
 function App() {
     const [query, setQuery] = useState('');
-    const [weather, setWeather] = useState({});
+    const [weather, setWeather] = useState({
+        sys: {
+            sunrise: 0,
+            sunset: 0
+        },
+        timezone: 0
+    });
+
 
     const search = evt => {
         if (evt.key === "Enter") {
@@ -15,25 +26,44 @@ function App() {
                 .then(res => res.json())
                 .then(result => {
                     setWeather(result);
-                    setQuery('');
+                    try {
+                        sunRise = convertTime(weather.sys.sunrise, weather.timezone)
+                        sunSet = convertTime(weather.sys.sunset, weather.timezone)
+                    } catch (e) {
+                        return
+                    }
+
                     console.log(result)
+                    setQuery('');
                 });
+
         }
+
     }
 
-    const dateBuilder = d => {
-        let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-        let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    function convertTime(unixTime, offset) {
+        let dt = new Date((unixTime + offset) * 1000)
+        let h = dt.getUTCHours()
+        let m = "0" + dt.getUTCMinutes()
+        let t = h + ":" + m.substr(-2)
+        return t
+    }
 
-        let day = days[d.getDay()];
+
+
+
+
+    const dateBuilder = d => {
+        const currentDate = new Date();
+        let day = currentDate.toLocaleString('default', { weekday: 'long' });
         let date = d.getDate();
-        let month = months[d.getMonth()];
+        let month = currentDate.toLocaleString('default', { month: 'long' });
         let year = d.getFullYear();
 
         return `${day}, ${month} ${date}, ${year}`
     }
 
-   
+
 
     return (
         <div className={
@@ -72,8 +102,29 @@ function App() {
                             <div className="date">{dateBuilder(new Date())}</div>
                         </div>
                         <div className="weather-box">
-                            <div className="temp">{Math.round(weather.main.temp)}°C</div>
-                            <div className="weather">{weather.weather[0].main}</div>
+                            <div className="temp">
+                                {Math.round(weather.main.temp)}°C
+                            </div>
+                            <div className="weather">
+                                <div className="key">
+                                    <h3>Weather:</h3>
+                                    <h3>Feels like:</h3>
+                                    <h3>Pressure:</h3>
+                                    <h3>Humidity:</h3>
+                                    <h3>Wind:</h3>
+                                    <h3>Sunrise:</h3>
+                                    <h3>Sunset:</h3>
+                                </div>
+                                <div className="value">
+                                    <p>{weather.weather[0].main}</p>
+                                    <p>{Math.round(weather.main.feels_like)}°C</p>
+                                    <p>{weather.main.pressure} Hg</p>
+                                    <p>{weather.main.humidity}%</p>
+                                    <p>{Math.floor(weather.wind.speed)} m/s</p>
+                                    <p>{sunRise}</p>
+                                    <p>{sunSet}</p>
+                                </div>
+                            </div>
                         </div>
                     </>)
                     : (
@@ -89,6 +140,8 @@ function App() {
                         )
 
                     )}
+                
+                <WhoDeveloped />
                 <Geolocation />
             </main>
         </div>
