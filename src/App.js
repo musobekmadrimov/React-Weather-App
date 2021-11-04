@@ -29,8 +29,10 @@ function App() {
                     try {
                         sunRise = convertTime(weather.sys.sunrise, weather.timezone)
                         sunSet = convertTime(weather.sys.sunset, weather.timezone)
-                        result.sys.sunrise = sunRise
-                        result.sys.sunset = sunSet
+                        console.log('SunRise: ', sunRise)
+                        console.log('SunSet: ', sunSet)
+                        // result.sys.sunrise = sunRise
+                        // result.sys.sunset = sunSet
                     } catch (e) {
                         return
                     }
