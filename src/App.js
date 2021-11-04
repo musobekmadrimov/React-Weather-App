@@ -27,8 +27,8 @@ function App() {
                 .then(result => {
                    
                     try {
-                        sunRise = convertTime(weather.sys.sunrise, weather.timezone)
-                        sunSet = convertTime(weather.sys.sunset, weather.timezone)
+                        sunRise = convertTime(result.sys.sunrise, result.timezone)
+                        sunSet = convertTime(result.sys.sunset, result.timezone)
                         console.log('SunRise: ', sunRise)
                         console.log('SunSet: ', sunSet)
                         // result.sys.sunrise = sunRise
@@ -127,7 +127,7 @@ function App() {
                                     <p>{weather.main.humidity}%</p>
                                     <p>{Math.floor(weather.wind.speed)} m/s</p>
                                     <p>{weather.sys.sunrise}</p>
-                                    <p>{weather.sys.sunrise}</p>
+                                    <p>{weather.sys.sunset}</p>
                                 </div>
                             </div>
                         </div>
