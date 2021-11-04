@@ -25,15 +25,18 @@ function App() {
             fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
                 .then(res => res.json())
                 .then(result => {
-                    setWeather(result);
+                   
                     try {
                         sunRise = convertTime(weather.sys.sunrise, weather.timezone)
                         sunSet = convertTime(weather.sys.sunset, weather.timezone)
+                        result.sys.sunrise = sunRise
+                        result.sys.sunset = sunSet
                     } catch (e) {
                         return
                     }
 
                     console.log(result)
+                    setWeather(result);
                     setQuery('');
                 });
 
@@ -121,8 +124,8 @@ function App() {
                                     <p>{weather.main.pressure} Hg</p>
                                     <p>{weather.main.humidity}%</p>
                                     <p>{Math.floor(weather.wind.speed)} m/s</p>
-                                    <p>{sunRise}</p>
-                                    <p>{sunSet}</p>
+                                    <p>{weather.sys.sunrise}</p>
+                                    <p>{weather.sys.sunrise}</p>
                                 </div>
                             </div>
                         </div>
