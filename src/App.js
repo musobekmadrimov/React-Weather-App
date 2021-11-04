@@ -6,8 +6,6 @@ const api = {
     base: "https://api.openweathermap.org/data/2.5/"
 }
 
-let sunRise;
-let sunSet;
 
 function App() {
     const [query, setQuery] = useState('');
@@ -27,12 +25,10 @@ function App() {
                 .then(result => {
                    
                     try {
-                        sunRise = convertTime(result.sys.sunrise, result.timezone)
-                        sunSet = convertTime(result.sys.sunset, result.timezone)
-                        console.log('SunRise: ', sunRise)
-                        console.log('SunSet: ', sunSet)
-                        // result.sys.sunrise = sunRise
-                        // result.sys.sunset = sunSet
+                        let sunRise = convertTime(result.sys.sunrise, result.timezone)
+                        let sunSet = convertTime(result.sys.sunset, result.timezone)
+                        result.sys.sunrise = sunRise
+                        result.sys.sunset = sunSet
                     } catch (e) {
                         return
                     }
